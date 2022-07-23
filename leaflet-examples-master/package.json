@@ -1,0 +1,20 @@
+{
+  "name": "leaflet-examples",
+  "version": "1.2.4",
+  "repository": "https://github.com/tomik23/leaflet-examples.git",
+  "description": "A collection of examples of leaflet map usage",
+  "author": "Grzegorz Tomicki",
+  "license": "MIT",
+  "keywords": [
+    "leaflet-examples",
+    "leaflet-maps"
+  ],
+  "scripts": {
+    "start": "http-server docs/ -o -p 3000"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "http-server": "^14.1.0",
+    "prettier": "^2.5.1"
+  }
+}

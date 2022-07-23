@@ -1,0 +1,92 @@
+<script src="https://kit.fontawesome.com/24cb6e0152.js" crossorigin="anonymous"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adding one marker</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="src/css/vanilla-calendar-min.css">
+  </head>
+
+  <body>
+     
+    <div class="sidebar">
+      <button aria-label="close sidebar" type="button" class="close-button">
+          <i class="far fa-map"></i>
+      </button>
+
+
+      <ul class="sidebar-menu">
+        <li class="menu-item" data-item="menu">
+          <i class="fa-solid fa-bars"></i>
+        </li>
+        <li class="menu-item" data-item="person">
+          <i class="fa fa-car"></i>
+        </li>
+        <li class="menu-item" data-item="email">
+          <i class="fa fa-calendar"></i>
+        </li>
+        <li class="menu-item" data-item="settings">
+          <i class="fa-solid fa-gear"></i>
+        </li>
+      </ul>
+
+
+
+      <div class="sidebar-content">
+        <div class="item-content" id="menu">
+          <h2>Info</h2>
+          <div class="content">
+            <button class="button button1" onclick="btnclick()"> Getz</button><br><br>
+            <button class="button button1">Car 1</button><br><br>
+            <button class="button button1">Car 2</button><br><br>
+            <button class="button button1">Car 3</button><br><br>
+            <button class="button button1">Car 4</button><br><br>
+            <button class="button button1">Car 5</button><br><br>
+          </div>
+        </div>
+        <div class="item-content" id="person">
+          <h2>Data</h2>
+          <div class="content">
+
+            <table style="font-size:20px" >
+              <tr>
+                <td><i class="fa-solid fa-gauge"></i></td>
+                <td><p>&nbsp speed: &nbsp</p></td>
+                <td><p id="text_speed"></p> </td>
+                <td><p> Km/h </p></td>
+              </tr>
+              <tr>
+                <td><i class="fa-solid fa-compass"></i> </td>
+                <td><p>&nbsp heading: &nbsp &nbsp &nbsp &nbsp </p></td>
+                <td><p id="text_head"></p></td>
+                <td><p>°</p></td>
+              </tr>
+            </table>
+
+          </div>
+        </div>
+        <div class="item-content" id="email">
+          <h2>Calendar</h2>
+          <div class="content">
+            <div id="myCalendar" class="vanilla-calendar" style="margin-bottom: 20px"></div>
+          </div>
+        </div>
+        <div class="item-content" id="settings">
+          <h2>Settings</h2>
+          <div class="content">settings</div>
+        </div>
+      </div>
+    </div>
+
+     
+    <div id="map"></div>
+    <script src="script.js"></script>
+  </body>
+
+</html>
