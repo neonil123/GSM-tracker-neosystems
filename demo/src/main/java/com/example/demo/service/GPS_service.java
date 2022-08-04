@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,18 +52,18 @@ private GPS_repository repo;
       return repo.findAll();
   }
 
-    public List<GPS_dto_dates> get_date(int day, int month, int year) {
+    public List<GPS_dto_dates> get_date(int day, int month, int year, int f_h, int s_h) {
         LocalDateTime myDateObj = LocalDateTime.of(year,month,day,00,00);
         List<GPS_data> data;
         data=repo.findAll();
 
         List<GPS_dto_dates> data_filtered = new ArrayList<>();
-
+        System.out.println("day:" + day + " " + "month:" + month + "year:" + year + " "  + "f_h:" + f_h + " " + "s_h" + s_h );
         for(int i=0; i < data.size();i++){
             GPS_data temp = data.get(i);
             LocalDateTime time_temp;
             time_temp = temp.getDate();
-            if(time_temp.getDayOfMonth() == myDateObj.getDayOfMonth() && time_temp.getYear() == myDateObj.getYear() && time_temp.getMonth() == myDateObj.getMonth()  ){
+            if(time_temp.getDayOfMonth() == myDateObj.getDayOfMonth() && time_temp.getYear() == myDateObj.getYear() && time_temp.getMonth() == myDateObj.getMonth() && time_temp.getHour() >= f_h  && time_temp.getHour() <= s_h ){
                 GPS_data temp_Gps = data.get(i);
                 GPS_dto_dates temp_dates = new GPS_dto_dates();
                 temp_dates.setLatitude(temp_Gps.getLatitude());

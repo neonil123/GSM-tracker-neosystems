@@ -232,4 +232,32 @@ svg:not(:root) {
 }
 
 .button1 {background-color: #0eaf6c;} 
+.button2 {
+  background-color: #538fcd;
+  border-radius: 10px;
+} 
 
+.select{
+  margin: auto;
+  border: none;
+  border-radius: 10px;
+  width:95%;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);  
+}
+
+.select1 {background-color: #538fcd;} 
+
+.center {
+
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+}

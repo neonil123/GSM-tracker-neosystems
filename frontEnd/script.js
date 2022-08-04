@@ -207,10 +207,10 @@ let speed = 0;
 let head  = 0;
 
 
-const url='http://test.neosystems.cc:8081/last';
-const url1='http://test.neosystems.cc:8081/date/';
-//const url='http://localhost:8082/last';
-//const url1='http://localhost:8082/date/';
+//const url='http://test.neosystems.cc:8081/last';
+//const url1='http://test.neosystems.cc:8081/date/';
+const url='http://localhost:8082/last';
+const url1='http://localhost:8082/date/';
 
 
 var greenGetz = L.icon({
@@ -269,7 +269,7 @@ setInterval(function(){
     else {
     }
     
-}, 1000);
+}, 10000);
 
 
 function btnclick() {
@@ -348,6 +348,10 @@ function closeSidebar() {
 
 //-------------------------------------------------
 //calendar
+
+let g_date = -1
+let g_month = -1
+let g_year = -1
             
 const Http1 = new XMLHttpRequest();
 Http1.onreadystatechange = (e) => {
@@ -374,17 +378,14 @@ L.polyline(points, {
 
 
 
-
-
 let calendar = new VanillaCalendar({
     selector: "#myCalendar",
     months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     shortWeekday: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','Sun'],
     onSelect: (data, elem, month, date, year) => {
-      Http1.open("GET", url1 + date + "/" + month + "/" + year);
-      console.log(url1 + date + "/" + month + "/" + year)
-      Http1.send();
-
+      g_date=date
+      g_month=month
+      g_year=year
     
     }
 })
@@ -403,6 +404,33 @@ function clearMap() {
 }
 
 
+const btn = document.querySelector('#btn');
+const h_s = document.querySelector('#hours_s')
+const h_f = document.querySelector('#hours_f')
+btn.onclick = (event) => {
+  event.preventDefault();
+  clearMap();
+if(g_date != -1 || g_month != -1 || g_year != -1){
+    if( h_f.selectedIndex >= h_s.selectedIndex ) {
+      let tmp = parseInt(h_f.value);
+      tmp = tmp + 1;
+      if( tmp < 10 ) {
+      h_s.value = "0" + String(tmp);
+      }
+      else{
+        h_s.value = String(tmp);
+      }
+}
+
+Http1.open("GET", url1 + g_date + "/" + g_month + "/" + g_year + "/" + String(h_f.value) + "/" + String(h_s.value) );
+      console.log(url1 + g_date + "/" + g_month + "/" + g_year + "/" + String(h_f.value) + "/" + String(h_s.value) );
+      Http1.send();
+}
+else{
+  alert("Please select date first");
+}
+
+};
 
 
 

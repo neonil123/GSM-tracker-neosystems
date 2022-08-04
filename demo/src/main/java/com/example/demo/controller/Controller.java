@@ -33,9 +33,9 @@ public class Controller {
         GPS_dto_Get data = service.get_last();
         return data;
     }
-    @GetMapping(value = "/date/{day}/{month}/{year}")
-    public List<GPS_dto_dates> get_Date_GPS(@PathVariable("day") int day, @PathVariable("month") int month, @PathVariable("year") int year){
-        List<GPS_dto_dates> data = service.get_date(day,month,year);
+    @GetMapping(value = "/date/{day}/{month}/{year}/{f_h}/{s_h}")
+    public List<GPS_dto_dates> get_Date_GPS(@PathVariable("day") int day, @PathVariable("month") int month, @PathVariable("year") int year, @PathVariable("f_h") int f_h, @PathVariable("s_h") int s_h){
+        List<GPS_dto_dates> data = service.get_date(day,month,year,f_h,s_h);
         return data;
     }
 
