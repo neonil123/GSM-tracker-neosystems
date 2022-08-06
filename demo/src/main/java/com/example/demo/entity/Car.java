@@ -1,18 +1,14 @@
 package com.example.demo.entity;
 
 import lombok.*;
+import org.springframework.data.annotation.Reference;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @RequiredArgsConstructor
-//@NoArgsConstructor
 @Setter
-
-
 
 @Entity
 public class Car {
@@ -23,4 +19,8 @@ public class Car {
     private int userId;
     private int hardwareId;
     private String name;
+
+    @OneToMany
+    @JoinColumn(name="carId")
+    private List<TrackerData> trackerData;
 }

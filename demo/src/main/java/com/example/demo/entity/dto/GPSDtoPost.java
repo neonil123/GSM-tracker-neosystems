@@ -15,5 +15,6 @@ public class GPSDtoPost {
     private double longitude;
     private double speed;
     private double heading;
+    private int carId;
     private LocalDateTime date;
 }

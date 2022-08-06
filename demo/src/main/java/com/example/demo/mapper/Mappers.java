@@ -14,6 +14,7 @@ public class Mappers {
         data.setDate(dto.getDate());
         data.setSpeed(dto.getSpeed());
         data.setHeading(dto.getHeading());
+        data.setCarId(dto.getCarId());
         return data;
     }
 
