@@ -11,6 +11,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="src/css/vanilla-calendar-min.css">
+    <link rel="stylesheet" href="src/css/list.css">
   </head>
 
   <body>
@@ -43,29 +44,98 @@
           <h2>Info</h2>
           <div class="content">
             <button class="button button1" onclick="btnclick()"> Getz</button><br><br>
-            <button class="button button1">Car 1</button><br><br>
-            <button class="button button1">Car 2</button><br><br>
-            <button class="button button1">Car 3</button><br><br>
-            <button class="button button1">Car 4</button><br><br>
-            <button class="button button1">Car 5</button><br><br>
+
+
+            <div class="todoBlock">
+
+
+              <!-- todo list -->
+
+              <div class="todoList">
+                <!-- list holder -->
+                <div class="listHolder">
+                  <ul class="list"> </ul>
+                </div>
+
+
+
+
+                <!-- form holder -->
+                <div class="formHolder">
+                  <div class="col big">
+                    <input type="text" id="addInput">
+                  </div>
+                  <div class="col">
+                    <button type="button" id="addBtn" class="btn-primary">Add Item</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
           </div>
         </div>
         <div class="item-content" id="person">
           <h2>Data</h2>
           <div class="content">
 
-            <table style="font-size:20px" >
-              <tr>
-                <td><i class="fa-solid fa-gauge"></i></td>
-                <td><p>&nbsp speed: &nbsp</p></td>
-                <td><p id="text_speed"></p> </td>
-                <td><p> Km/h </p></td>
+            <table class="custom">
+              <tr class="custom">
+                <td class="custom"><p>&nbsp Speed: &nbsp</p></td>
+                <td class="custom"><p id="text_speed"></p> </td>
+                <td class="custom"><p> Km/h </p></td>
               </tr>
-              <tr>
-                <td><i class="fa-solid fa-compass"></i> </td>
-                <td><p>&nbsp heading: &nbsp &nbsp &nbsp &nbsp </p></td>
-                <td><p id="text_head"></p></td>
-                <td><p>°</p></td>
+
+
+              <tr class="custom">
+                <td class="custom"><p>&nbsp Heading: &nbsp &nbsp &nbsp &nbsp </p></td>
+                <td class="custom"><p id="text_head"></p></td>
+                <td class="custom"><p>°</p></td>
+              </tr>
+              
+
+              <tr class="custom">
+                <td class="custom"><p>&nbsp Fuel: &nbsp &nbsp &nbsp &nbsp </p></td>
+                <td class="custom"><p id="text_fuel"></p></td>
+                <td class="custom"><p>%</p></td>
+              </tr>
+
+
+              <tr class="custom">
+                <td class="custom"><p>&nbsp Engine temp: &nbsp &nbsp &nbsp &nbsp </p></td>
+                <td class="custom"><p id="text_engTemp"></p></td>
+                <td class="custom"><p>°C</p></td>
+              </tr>
+
+
+              <tr class="custom">
+                <td class="custom"><p>&nbsp Faults: &nbsp &nbsp &nbsp &nbsp </p></td>
+                <td class="custom"><p id="text_faults"></p></td>
+                <td class="custom"><p>Errors</p></td>
+              </tr>
+
+
+              <tr class="custom">
+                <td class="custom"><p>&nbsp Speed GPS: &nbsp &nbsp &nbsp &nbsp </p></td>
+                <td class="custom"><p id="text_speedGps"></p></td>
+                <td class="custom"><p>Km/h</p></td>
+              </tr>
+
+
+              <tr class="custom">
+                <td class="custom"><p>&nbsp Car Battery: &nbsp &nbsp &nbsp &nbsp </p></td>
+                <td class="custom"><p id="text_carBattery"></p></td>
+                <td class="custom"><p>V</p></td>
+              </tr>
+
+
+              <tr class="custom">
+                <td class="custom"><p>&nbsp Tracker Battery: &nbsp &nbsp &nbsp &nbsp </p></td>
+                <td class="custom"><p id="text_trackerBattery"></p></td>
+                <td class="custom"><p>%</p></td>
               </tr>
             </table>
 
@@ -116,7 +186,6 @@
 
                 <td width="25%">  
                   <select class="select select1" name="hours_s" id="hours_s">
-                    <option value="00">00</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
                     <option value="03">03</option>

@@ -261,3 +261,17 @@ svg:not(:root) {
   width: 90%;
   padding: 10px;
 }
+
+table.custom {
+  font-size: large;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th.custom , td.custom {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr.custom:hover {background-color: #538fcd;}

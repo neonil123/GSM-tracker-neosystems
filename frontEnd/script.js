@@ -201,10 +201,17 @@ let VanillaCalendar = (function () {
 
 window.VanillaCalendar = VanillaCalendar
 let date
-let lat = 47.00556;
-let lng = 28.8575;
-let speed = 0;
-let head  = 0;
+
+let lat        = 0;
+let lng        = 0;
+let speed      = 0;
+let head       = 0;
+let fuel       = 0;
+let engTemp    = 0;
+let faults     = 0;
+let gpsSpeed   = 0;
+let carBatt    = 0;
+let trackBatt  = 0;
 
 
 //const url='http://test.neosystems.cc:8081/last';
@@ -248,8 +255,8 @@ Http.onreadystatechange = (e) => {
   var json = JSON.parse(Http.responseText);
   console.log(json["longitude"]); //mkyong
   console.log(json["latitude"]);
-  speed = json["speed"];
-  head  = json["heading"];
+  gpsSpeed = json["speed"];
+  head     = json["heading"];
   lat = json["latitude"]
   lng = json["longitude"]
 }
@@ -261,8 +268,16 @@ setInterval(function(){
   Http.open("GET", url);
   Http.send();
   marker.setLatLng([lat, lng]).update();
-  document.getElementById("text_speed").innerHTML = speed;
-  document.getElementById("text_head").innerHTML = head;
+  document.getElementById("text_speed").innerHTML          = speed;
+  document.getElementById("text_head").innerHTML           = head;
+  document.getElementById("text_fuel").innerHTML           = fuel;
+  document.getElementById("text_engTemp").innerHTML        = engTemp;
+  document.getElementById("text_faults").innerHTML         = faults;
+  document.getElementById("text_speedGps").innerHTML       = gpsSpeed;
+  document.getElementById("text_carBattery").innerHTML     = carBatt;
+  document.getElementById("text_trackerBattery").innerHTML = trackBatt;
+
+  
   if(marker.isPopupOpen()) {
      map.setView([lat, lng]);
     }
@@ -381,7 +396,7 @@ L.polyline(points, {
 let calendar = new VanillaCalendar({
     selector: "#myCalendar",
     months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-    shortWeekday: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','Sun'],
+    shortWeekday: ['Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
     onSelect: (data, elem, month, date, year) => {
       g_date=date
       g_month=month
@@ -434,3 +449,96 @@ else{
 
 
 
+
+
+
+/* Cart list part */
+
+const divList = document.querySelector('.listHolder');
+
+
+/* 
+2. add list items
+-----------------
+*/
+// create variables
+const addInput = document.querySelector('#addInput');
+const addBtn = document.querySelector('#addBtn');
+
+function addLists() {
+  if (addInput.value === '') {
+    alert('Enter the list name please!!!');
+  } 
+  else {
+    const ul = divList.querySelector('ul');
+    const li = document.createElement('li');
+    li.innerHTML = addInput.value;
+    addInput.value = '';
+    ul.appendChild(li);
+    createBtn(li);
+  }
+}
+
+
+// add list when clicked on add item button
+addBtn.addEventListener('click', () => {
+  addLists();
+});
+
+/* 
+3. create action buttons
+------------------------
+*/
+// create variables
+const listUl = document.querySelector('.list');
+const lis = listUl.children;
+
+function createBtn(li) {
+  // create remove button
+  const remove = document.createElement('button');
+  remove.className = 'btn-icon remove';
+  li.appendChild(remove);
+
+  // create down button
+  const down = document.createElement('button');
+  down.className = 'btn-icon down';
+  li.appendChild(down);
+
+  // create up button
+  const up = document.createElement('button');
+  up.className = 'btn-icon up';
+  li.appendChild(up);
+
+  return li;
+}
+
+// loop to add buttons in each li
+for (var i = 0; i < lis.length; i++) {
+  createBtn(lis[i]);
+}
+
+
+/* 
+4. enabling button actions (to move item up, down or delete)
+------------------------------------------------------------
+*/
+divList.addEventListener('click', (event) => {
+  if (event.target.tagName === 'BUTTON') {
+    const button = event.target;
+    const li = button.parentNode;
+    const ul = li.parentNode;
+    if (button.className === 'btn-icon remove') {
+      ul.removeChild(li);
+    } else if (button.className === 'btn-icon down') {
+      const nextLi = li.nextElementSibling;
+      if (nextLi) {
+        ul.insertBefore(nextLi, li);
+      }
+    } else if (button.className === 'btn-icon up') {
+      const prevLi = li.previousElementSibling;
+      if (prevLi) {
+        ul.insertBefore(li, prevLi);
+      }
+    }
+  }
+});

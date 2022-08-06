@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @Getter
 @RequiredArgsConstructor
@@ -17,7 +15,7 @@ import java.util.Date;
 
 
 @Entity
-public class GPS_data {
+public class TrackerData {
     @Id
     @GeneratedValue
     private int id;

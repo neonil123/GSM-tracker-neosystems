@@ -4,13 +4,11 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @RequiredArgsConstructor
-
-public class GPS_dto_dates {
-    private double latitude;
-    private double longitude;
+public class CarDto {
+    private int hardwareId;
+    private String name;
+    private int userId;
 }
