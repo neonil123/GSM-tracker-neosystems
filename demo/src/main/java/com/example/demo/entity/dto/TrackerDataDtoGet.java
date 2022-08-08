@@ -7,8 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class CarDto {
-    private int hardwareId;
-    private String name;
-    private int userId;
+
+public class TrackerDataDtoGet {
+    private double latitude;
+    private double longitude;
+    private double speed;
+    private double heading;
 }

@@ -3,188 +3,260 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adding one marker</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="src/css/vanilla-calendar-min.css">
-    <link rel="stylesheet" href="src/css/list.css">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adding one marker</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="src/css/vanilla-calendar-min.css">
+</head>
 
-  <body>
-     
-    <div class="sidebar">
-      <button aria-label="close sidebar" type="button" class="close-button">
-          <i class="far fa-map"></i>
-      </button>
+<body>
 
-
-      <ul class="sidebar-menu">
-        <li class="menu-item" data-item="menu">
-          <i class="fa-solid fa-bars"></i>
-        </li>
-        <li class="menu-item" data-item="person">
-          <i class="fa fa-car"></i>
-        </li>
-        <li class="menu-item" data-item="email">
-          <i class="fa fa-calendar"></i>
-        </li>
-        <li class="menu-item" data-item="settings">
-          <i class="fa-solid fa-gear"></i>
-        </li>
-      </ul>
+  <div class="sidebar">
+    <button aria-label="close sidebar" type="button" class="close-button">
+      <i class="far fa-map"></i>
+    </button>
 
 
-
-      <div class="sidebar-content">
-        <div class="item-content" id="menu">
-          <h2>Info</h2>
-          <div class="content">
-            <button class="button button1" onclick="btnclick()"> Getz</button><br><br>
-
-
-            <div class="todoBlock">
-
-
-              <!-- todo list -->
-
-              <div class="todoList">
-                <!-- list holder -->
-                <div class="listHolder">
-                  <ul class="list"> </ul>
-                </div>
+    <ul class="sidebar-menu">
+      <li class="menu-item" data-item="menu">
+        <i class="fa-solid fa-bars"></i>
+      </li>
+      <li class="menu-item" data-item="person">
+        <i class="fa fa-car"></i>
+      </li>
+      <li class="menu-item" data-item="email">
+        <i class="fa fa-calendar"></i>
+      </li>
+      <li class="menu-item" data-item="settings">
+        <i class="fa-solid fa-gear"></i>
+      </li>
+    </ul>
 
 
 
+    <div class="sidebar-content">
+      <div class="item-content" id="menu">
+        <h2>Info</h2>
+        <div class="content">
 
-                <!-- form holder -->
-                <div class="formHolder">
-                  <div class="col big">
-                    <input type="text" id="addInput">
-                  </div>
-                  <div class="col">
-                    <button type="button" id="addBtn" class="btn-primary">Add Item</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-
-
-          </div>
-        </div>
-        <div class="item-content" id="person">
-          <h2>Data</h2>
-          <div class="content">
+            <h2 style="color:0">Log In</h2>
 
             <table class="custom">
               <tr class="custom">
-                <td class="custom"><p>&nbsp Speed: &nbsp</p></td>
-                <td class="custom"><p id="text_speed"></p> </td>
-                <td class="custom"><p> Km/h </p></td>
+                <td class="custom">
+                  <p> Username:</p>
+                </td>
+                <td class="custom">
+                  <p> <input type="text" id="LName" size="20" name="LName"></p>
+                </td>
               </tr>
-
-
+  
               <tr class="custom">
-                <td class="custom"><p>&nbsp Heading: &nbsp &nbsp &nbsp &nbsp </p></td>
-                <td class="custom"><p id="text_head"></p></td>
-                <td class="custom"><p>°</p></td>
+                <td class="custom">
+                  <p> Password:</p>
+                </td>
+                <td class="custom">
+                  <p> <input type="password" id="LPass" size="20" name="LPass"></p>
+                </td>
               </tr>
-              
-
-              <tr class="custom">
-                <td class="custom"><p>&nbsp Fuel: &nbsp &nbsp &nbsp &nbsp </p></td>
-                <td class="custom"><p id="text_fuel"></p></td>
-                <td class="custom"><p>%</p></td>
-              </tr>
-
-
-              <tr class="custom">
-                <td class="custom"><p>&nbsp Engine temp: &nbsp &nbsp &nbsp &nbsp </p></td>
-                <td class="custom"><p id="text_engTemp"></p></td>
-                <td class="custom"><p>°C</p></td>
-              </tr>
-
-
-              <tr class="custom">
-                <td class="custom"><p>&nbsp Faults: &nbsp &nbsp &nbsp &nbsp </p></td>
-                <td class="custom"><p id="text_faults"></p></td>
-                <td class="custom"><p>Errors</p></td>
-              </tr>
-
-
-              <tr class="custom">
-                <td class="custom"><p>&nbsp Speed GPS: &nbsp &nbsp &nbsp &nbsp </p></td>
-                <td class="custom"><p id="text_speedGps"></p></td>
-                <td class="custom"><p>Km/h</p></td>
-              </tr>
-
-
-              <tr class="custom">
-                <td class="custom"><p>&nbsp Car Battery: &nbsp &nbsp &nbsp &nbsp </p></td>
-                <td class="custom"><p id="text_carBattery"></p></td>
-                <td class="custom"><p>V</p></td>
-              </tr>
-
-
-              <tr class="custom">
-                <td class="custom"><p>&nbsp Tracker Battery: &nbsp &nbsp &nbsp &nbsp </p></td>
-                <td class="custom"><p id="text_trackerBattery"></p></td>
-                <td class="custom"><p>%</p></td>
-              </tr>
+  
             </table>
+            <td class="custom"> <button class="button button2" onclick="btnLogInclick()"> LogIn</button> </td>
 
-          </div>
         </div>
-        <div class="item-content" id="email">
-          <h2>Calendar</h2>
-          <div class="content">
-            <div id="myCalendar" class="vanilla-calendar" style="margin-bottom: 20px"></div>
+      </div>
+      <div class="item-content" id="person">
+        <h2>Data</h2>
+        <div class="content">
 
-            <div class="center">
 
-              <table style="font-size:20px" >
-                <tr>
+          <table class="custom">
+          <tr>
+            <td>
+              Tracker: &nbsp
+              <select class="select select2" name="fronTrackers" id="fronTrackers"></select>
+            </td>
+          </tr>
+         </table>
 
-                  <td width="25%"><p><b>FROM:</b></p></td>
+         <br>
+         
+         <table class="custom">
+          <tr>
+            <td>
+              <button class="button button3" onclick="btnclick()"> find </button>
+            </td>
+            <td>
+              <button class="button button3" onclick="btnclick()"> follow </button>
+            </td>
+            <td>
+              <button class="button button3" onclick="btnclick()"> delete </button>
+            </td>
+          <td>
+          </tr>
+          </table>
 
-                  <td width="25%">
-                    <select class="select select1" name="hours_f" id="hours_f">
-                      <option value="00">00</option>
-                      <option value="01">01</option>
-                      <option value="02">02</option>
-                      <option value="03">03</option>
-                      <option value="04">04</option>
-                      <option value="05">05</option>
-                      <option value="06">06</option>
-                      <option value="07">07</option>
-                      <option value="08">08</option>
-                      <option value="09">09</option>
-                      <option value="10">10</option>
-                      <option value="11">11</option>
-                      <option value="12">12</option>
-                      <option value="13">13</option>
-                      <option value="14">14</option>
-                      <option value="15">15</option>
-                      <option value="16">16</option>
-                      <option value="17">17</option>
-                      <option value="18">18</option>
-                      <option value="19">19</option>
-                      <option value="20">20</option>
-                      <option value="21">21</option>
-                      <option value="22">22</option>
-                      <option value="23">23</option>
-                    </select>
+         <br>
+
+          <table class="custom">
+            <tr class="custom">
+              <td class="custom">
+                <p>&nbsp Speed: &nbsp</p>
+              </td>
+              <td class="custom">
+                <p id="text_speed"></p>
+              </td>
+              <td class="custom">
+                <p> Km/h </p>
+              </td>
+            </tr>
+
+
+            <tr class="custom">
+              <td class="custom">
+                <p>&nbsp Heading: &nbsp &nbsp &nbsp &nbsp </p>
+              </td>
+              <td class="custom">
+                <p id="text_head"></p>
+              </td>
+              <td class="custom">
+                <p>°</p>
+              </td>
+            </tr>
+
+
+            <tr class="custom">
+              <td class="custom">
+                <p>&nbsp Fuel: &nbsp &nbsp &nbsp &nbsp </p>
+              </td>
+              <td class="custom">
+                <p id="text_fuel"></p>
+              </td>
+              <td class="custom">
+                <p>%</p>
+              </td>
+            </tr>
+
+
+            <tr class="custom">
+              <td class="custom">
+                <p>&nbsp Engine temp: &nbsp &nbsp &nbsp &nbsp </p>
+              </td>
+              <td class="custom">
+                <p id="text_engTemp"></p>
+              </td>
+              <td class="custom">
+                <p>°C</p>
+              </td>
+            </tr>
+
+
+            <tr class="custom">
+              <td class="custom">
+                <p>&nbsp Faults: &nbsp &nbsp &nbsp &nbsp </p>
+              </td>
+              <td class="custom">
+                <p id="text_faults"></p>
+              </td>
+              <td class="custom">
+                <p>Errors</p>
+              </td>
+            </tr>
+
+
+            <tr class="custom">
+              <td class="custom">
+                <p>&nbsp Speed GPS: &nbsp &nbsp &nbsp &nbsp </p>
+              </td>
+              <td class="custom">
+                <p id="text_speedGps"></p>
+              </td>
+              <td class="custom">
+                <p>Km/h</p>
+              </td>
+            </tr>
+
+
+            <tr class="custom">
+              <td class="custom">
+                <p>&nbsp Car Battery: &nbsp &nbsp &nbsp &nbsp </p>
+              </td>
+              <td class="custom">
+                <p id="text_carBattery"></p>
+              </td>
+              <td class="custom">
+                <p>V</p>
+              </td>
+            </tr>
+
+
+            <tr class="custom">
+              <td class="custom">
+                <p>&nbsp Tracker Battery: &nbsp &nbsp &nbsp &nbsp </p>
+              </td>
+              <td class="custom">
+                <p id="text_trackerBattery"></p>
+              </td>
+              <td class="custom">
+                <p>%</p>
+              </td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+      <div class="item-content" id="email">
+        <h2>Calendar</h2>
+        <div class="content">
+          <div id="myCalendar" class="vanilla-calendar" style="margin-bottom: 20px"></div>
+
+          <div class="center">
+
+            <table style="font-size:20px">
+              <tr>
+
+                <td width="25%">
+                  <p><b>FROM:</b></p>
                 </td>
 
-                <td width="25%"><p style="text-align:right;"><b> TO: &nbsp</b></p></td>
+                <td width="25%">
+                  <select class="select select1" name="hours_f" id="hours_f">
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                  </select>
+                </td>
 
-                <td width="25%">  
+                <td width="25%">
+                  <p style="text-align:right;"><b> TO: &nbsp</b></p>
+                </td>
+
+                <td width="25%">
                   <select class="select select1" name="hours_s" id="hours_s">
                     <option value="01">01</option>
                     <option value="02">02</option>
@@ -211,25 +283,53 @@
                     <option value="23">23</option>
                     <option value="24">24</option>
                   </select>
-                  </td>
-                </tr>
-              </table>
-
+                </td>
+              </tr>
+            </table>
             <button class="button button2" id="btn">Search time-frame</button>
           </div>
-
-          </div>
         </div>
-        <div class="item-content" id="settings">
+      </div>
+
+
+
+
+      <div class="item-content" id="settings">
           <h2>Settings</h2>
-          <div class="content">settings</div>
+          <div class="content">
+          <h2 style="color:0">Add tracker</h2>
+          <br>
+          <table class="custom">
+            <tr class="custom">
+              <td class="custom">
+                <p> Hardware Id:</p>
+              </td>
+              <td class="custom">
+                <p> <input type="text" id="hardwareId" size="20" name="hardwareId"></p>
+              </td>
+            </tr>
+
+            <tr class="custom">
+              <td class="custom">
+                <p> Name:</p>
+              </td>
+              <td class="custom">
+                <p> <input type="text" id="hardwareName" size="20" name="HardwareName"></p>
+              </td>
+            </tr>
+
+          </table>
+          <td class="custom"> <button class="button button2" onclick="btnAddTrackerclick()"> add tracker</button> </td>
+
+
         </div>
       </div>
     </div>
+  </div>
 
-     
-    <div id="map"></div>
-    <script src="script.js"></script>
-  </body>
+
+  <div id="map"></div>
+  <script src="script.js"></script>
+</body>
 
 </html>

@@ -8,6 +8,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public interface GPSRepository extends JpaRepository<TrackerData, Integer> {
+public interface TrackerDataRepository extends JpaRepository<TrackerData, Integer> {
     List<TrackerData> findAllByDate(LocalDateTime publicationDate);
 }

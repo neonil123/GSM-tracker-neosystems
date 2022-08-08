@@ -1,17 +1,19 @@
 package com.example.demo.entity;
 
-import lombok.*;
-import org.springframework.data.annotation.Reference;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Getter
 @RequiredArgsConstructor
-//@NoArgsConstructor
 @Setter
-
-
 
 @Entity
 public class User {
@@ -23,5 +25,5 @@ public class User {
 
     @OneToMany()
     @JoinColumn(name="userId")
-    private List<Car> cars;
+    private List<Tracker> trackers;
 }

@@ -23,4 +23,14 @@ public class UserService {
         User user = Mappers.userDtoToUser(userDto);
         return userRepository.save(user);
     }
+
+    public User logInUser(UserDto userDto) {
+        List<User> users = userRepository.findAll();
+        for(User user :users){
+            if(user.getUsername().equals(userDto.getUsername()) && user.getPassword().equals(userDto.getPassword())){
+                return user;
+            }
+        }
+        return null;
+    }
 }

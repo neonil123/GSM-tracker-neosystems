@@ -213,6 +213,8 @@ svg:not(:root) {
   overflow: hidden;
 }
 
+
+
 .active-content {
   display: block;
 }
@@ -237,11 +239,17 @@ svg:not(:root) {
   border-radius: 10px;
 } 
 
+.button3 {
+  width: 80%;
+  background-color: #538fcd;
+  border-radius: 5px;
+} 
+
 .select{
   margin: auto;
   border: none;
   border-radius: 10px;
-  width:95%;
+ 
   color: white;
   padding: 5px 15px;
   text-align: center;
@@ -254,6 +262,13 @@ svg:not(:root) {
 }
 
 .select1 {background-color: #538fcd;} 
+
+.select2 {
+  background-color: #538fcd;
+  width:75%;
+}
+
+
 
 .center {
 

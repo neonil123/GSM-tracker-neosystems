@@ -1,33 +1,33 @@
 package com.example.demo.mapper;
 
-import com.example.demo.entity.Car;
+import com.example.demo.entity.Tracker;
 import com.example.demo.entity.TrackerData;
 import com.example.demo.entity.User;
 import com.example.demo.entity.dto.*;
 
 public class Mappers {
 
-   static public TrackerData dtoPostToData(GPSDtoPost dto) {
+   static public TrackerData dtoPostToData(TrackerDataDtoPost dto) {
         TrackerData data = new TrackerData();
         data.setLatitude(dto.getLatitude());
         data.setLongitude(dto.getLongitude());
         data.setDate(dto.getDate());
         data.setSpeed(dto.getSpeed());
         data.setHeading(dto.getHeading());
-        data.setCarId(dto.getCarId());
+        data.setTrackerId(dto.getTrackerId());
         return data;
     }
 
-   static public GPSDtoDates DataToDtoDates(TrackerData gps_data) {
-        GPSDtoDates temp_dates = new GPSDtoDates();
+   static public TrackerDataDtoGetDates DataToDtoDates(TrackerData gps_data) {
+        TrackerDataDtoGetDates temp_dates = new TrackerDataDtoGetDates();
         temp_dates.setLatitude(gps_data.getLatitude());
         temp_dates.setLongitude(gps_data.getLongitude());
         return temp_dates;
     }
 
 
-    static public GPSDtoGet DataToDtoGet(TrackerData temp) {
-        GPSDtoGet temp1 = new GPSDtoGet();
+    static public TrackerDataDtoGet DataToDtoGet(TrackerData temp) {
+        TrackerDataDtoGet temp1 = new TrackerDataDtoGet();
         temp1.setLongitude(temp.getLongitude());
         temp1.setLatitude(temp.getLatitude());
         temp1.setSpeed(temp.getSpeed());
@@ -42,11 +42,29 @@ public class Mappers {
        return user;
     }
 
-    public static Car carDtoToCar(CarDto carDto) {
-       Car car = new Car();
-       car.setName(carDto.getName());
-       car.setHardwareId(carDto.getHardwareId());
-       car.setUserId(carDto.getUserId());
-       return car;
+    public static Tracker carDtoToCar(TrackerDto trackerDto) {
+       Tracker tracker = new Tracker();
+       tracker.setName(trackerDto.getName());
+       tracker.setHardwareId(trackerDto.getHardwareId());
+       tracker.setUserId(trackerDto.getUserId());
+       return tracker;
+    }
+
+    public static TrackerDto trackerToTrackerDto(Tracker tracker) {
+       TrackerDto trackerDto = new TrackerDto();
+       trackerDto.setName(tracker.getName());
+       trackerDto.setId(tracker.getId());
+       trackerDto.setHardwareId(tracker.getHardwareId());
+       return trackerDto;
+    }
+
+    public static TrackerDtoGetLastTrackerData TrackerToTrackerDtoGetLastTrackerData(TrackerData trackerData) {
+       TrackerDtoGetLastTrackerData trackerDtoGetLastTrackerData = new TrackerDtoGetLastTrackerData();
+       trackerDtoGetLastTrackerData.setTrackerId(trackerData.getTrackerId());
+       trackerDtoGetLastTrackerData.setHeading(trackerData.getHeading());
+       trackerDtoGetLastTrackerData.setSpeed(trackerData.getSpeed());
+       trackerDtoGetLastTrackerData.setLongitude(trackerData.getLongitude());
+       trackerDtoGetLastTrackerData.setLatitude(trackerData.getLatitude());
+       return trackerDtoGetLastTrackerData;
     }
 }

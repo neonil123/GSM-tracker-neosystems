@@ -7,8 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-
-public class GPSDtoDates {
-    private double latitude;
-    private double longitude;
+public class TrackerDto {
+    private int id;
+    private int hardwareId;
+    private String name;
+    private int userId;
 }

@@ -1,7 +1,6 @@
 package com.example.demo.entity;
 
 import lombok.*;
-import org.springframework.data.annotation.Reference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
 @Setter
 
 @Entity
-public class Car {
+public class Tracker {
     @Id
     @GeneratedValue
     @Column(name = "carid")
@@ -21,6 +20,6 @@ public class Car {
     private String name;
 
     @OneToMany
-    @JoinColumn(name="carId")
+    @JoinColumn(name="trackerId")
     private List<TrackerData> trackerData;
 }

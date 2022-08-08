@@ -2,7 +2,6 @@ package com.example.demo.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +13,7 @@ import java.time.LocalDateTime;
 
 @Entity
 public class TrackerData {
+
     @Id
     @GeneratedValue
     private int id;
@@ -21,6 +21,6 @@ public class TrackerData {
     private double longitude;
     private double speed;
     private double heading;
-    private int carId;
+    private int trackerId;
     private LocalDateTime date;
 }
