@@ -118,7 +118,7 @@ svg:not(:root) {
   left: 44px;
   width: 100%;
   height: 40px;
-  background: #0052b1;
+  background: #d68438;
 }
 
 .active-sidebar .sidebar::before {
@@ -164,7 +164,7 @@ svg:not(:root) {
 }
 
 .active-item {
-  background: #0052b1;
+  background: #d68438;
 }
 
 .active-item svg {
@@ -219,38 +219,39 @@ svg:not(:root) {
   display: block;
 }
 
+
+
 .button {
   border: none;
   width: 100%;
   color: white;
-  padding: 15px 15px;
+  padding: 10px 10px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   cursor: pointer;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);  
+  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);  
+	border-radius: 5px;
+	transition: .3s ease-in;
+	cursor: pointer;
 }
 
-.button1 {background-color: #0eaf6c;} 
-.button2 {
-  background-color: #538fcd;
-  border-radius: 10px;
-} 
-
+.button2 {background-color: #4bb39a;} 
 .button3 {
   width: 80%;
-  background-color: #538fcd;
-  border-radius: 5px;
-} 
+  background-color: #4bb39a;} 
+  
+button:hover{
+	background: #d68438;
+}
+
 
 .select{
   margin: auto;
   border: none;
-  border-radius: 10px;
  
-  color: white;
+ 
+  color: rgb(0, 0, 0);
   padding: 5px 15px;
   text-align: center;
   text-decoration: none;
@@ -258,14 +259,21 @@ svg:not(:root) {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);  
+  
 }
 
-.select1 {background-color: #538fcd;} 
+
+
+.select1 {background-color: #4bb39a;
+  border-radius: 5px;
+  color: white;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);  
+} 
 
 .select2 {
-  background-color: #538fcd;
-  width:75%;
+  background-color: #4bb39a;
+  width: 95%;
+  border-radius: 5px;
 }
 
 
@@ -289,4 +297,116 @@ th.custom , td.custom {
   border-bottom: 1px solid #ddd;
 }
 
-tr.custom:hover {background-color: #538fcd;}
+tr.custom:hover {background-color: #4bb39a;}
+
+input{
+  width: 100%;
+  padding: 8px 8px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  font-size: 16px;
+}
+
+input:focus {
+  border: 3px solid #555;
+}
+
+
+
+
+.login-form {
+  background: #fff;
+  width: 100%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  border-radius: 4px;
+}
+
+.login-form .content {
+  padding: 5px;
+  text-align: center;
+}
+.login-form .input-field {
+  padding: 12px 5px;
+}
+.login-form .input-field input {
+  font-size: 16px;
+  display: block;
+  font-family: 'Rubik', sans-serif;
+  width: 100%;
+  padding: 10px 1px;
+  border: 0;
+  border-bottom: 1px solid #747474;
+  outline: none;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+.login-form .input-field input::-webkit-input-placeholder {
+  text-transform: uppercase;
+}
+.login-form .input-field input::-moz-placeholder {
+  text-transform: uppercase;
+}
+.login-form .input-field input:-ms-input-placeholder {
+  text-transform: uppercase;
+}
+.login-form .input-field input::-ms-input-placeholder {
+  text-transform: uppercase;
+}
+.login-form .input-field input::placeholder {
+  text-transform: uppercase;
+}
+.login-form .input-field input:focus {
+  border-color: #222;
+}
+.login-form a.link {
+  text-decoration: none;
+  color: #747474;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-top: 20px;
+}
+.login-form .action {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+}
+.login-form .action button {
+  width: 100%;
+  border: none;
+  padding: 18px;
+  font-family: 'Rubik', sans-serif;
+  cursor: pointer;
+  text-transform: uppercase;
+  background: #e8e9ec;
+  color: #777;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 0;
+  letter-spacing: 0.2px;
+  outline: 0;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.login-form .action button:hover {
+  background: #d8d8d8;
+}
+.login-form .action button:nth-child(2) {
+  background: #4bb39a;
+  color: #fff;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 4px;
+}
+.login-form .action button:nth-child(2):hover {
+  background: #4bb39a;
+}
+

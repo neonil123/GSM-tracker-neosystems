@@ -44,8 +44,8 @@ public class Mappers {
 
     public static Tracker carDtoToCar(TrackerDto trackerDto) {
        Tracker tracker = new Tracker();
+       tracker.setId(trackerDto.getId());
        tracker.setName(trackerDto.getName());
-       tracker.setHardwareId(trackerDto.getHardwareId());
        tracker.setUserId(trackerDto.getUserId());
        return tracker;
     }
@@ -54,7 +54,6 @@ public class Mappers {
        TrackerDto trackerDto = new TrackerDto();
        trackerDto.setName(tracker.getName());
        trackerDto.setId(tracker.getId());
-       trackerDto.setHardwareId(tracker.getHardwareId());
        return trackerDto;
     }
 

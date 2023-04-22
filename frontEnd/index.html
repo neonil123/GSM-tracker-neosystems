@@ -10,8 +10,12 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="src/css/vanilla-calendar-min.css">
+  <link rel="stylesheet" href="src/css/vanilla-calendar.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
 </head>
+
+
 
 <body>
 
@@ -25,10 +29,10 @@
       <li class="menu-item" data-item="menu">
         <i class="fa-solid fa-bars"></i>
       </li>
-      <li class="menu-item" data-item="person">
+      <li class="menu-item" data-item="car">
         <i class="fa fa-car"></i>
       </li>
-      <li class="menu-item" data-item="email">
+      <li class="menu-item" data-item="calendar">
         <i class="fa fa-calendar"></i>
       </li>
       <li class="menu-item" data-item="settings">
@@ -43,63 +47,43 @@
         <h2>Info</h2>
         <div class="content">
 
-            <h2 style="color:0">Log In</h2>
-
-            <table class="custom">
-              <tr class="custom">
-                <td class="custom">
-                  <p> Username:</p>
-                </td>
-                <td class="custom">
-                  <p> <input type="text" id="LName" size="20" name="LName"></p>
-                </td>
-              </tr>
-  
-              <tr class="custom">
-                <td class="custom">
-                  <p> Password:</p>
-                </td>
-                <td class="custom">
-                  <p> <input type="password" id="LPass" size="20" name="LPass"></p>
-                </td>
-              </tr>
-  
-            </table>
-            <td class="custom"> <button class="button button2" onclick="btnLogInclick()"> LogIn</button> </td>
+          
+                <div id="loginForm" class="login-form">
+                  <h2 style="color:0">Log In</h2>
+                  <form>
+                    <div class="content">
+                      <div class="input-field">
+                        <input id="LName" type="email" placeholder="Email" autocomplete="nope">
+                      </div>
+                      <div class="input-field">
+                        <input id="LPass" type="password" placeholder="Password" autocomplete="new-password">
+                      </div>
+                      <a href="#" class="link">Forgot Your Password?</a>
+                    </div>
+                    <div class="action">
+                      <button onclick="btnRegisterclick()">Register</button>
+                      <button onclick="btnLogInclick()">Sign in</button>
+                    </div>
+                  </form>
+                </div>
+               
+                <button id="LogOut" class="button button2"  style="visibility:hidden;"  onclick="btnLogOutClick()"> Log Out </button>
 
         </div>
       </div>
-      <div class="item-content" id="person">
+      <div class="item-content" id="car">
         <h2>Data</h2>
         <div class="content">
 
-
-          <table class="custom">
-          <tr>
-            <td>
+          <div>
+            <p>
               Tracker: &nbsp
-              <select class="select select2" name="fronTrackers" id="fronTrackers"></select>
-            </td>
-          </tr>
-         </table>
+            </p>
 
-         <br>
-         
-         <table class="custom">
-          <tr>
-            <td>
-              <button class="button button3" onclick="btnclick()"> find </button>
-            </td>
-            <td>
-              <button class="button button3" onclick="btnclick()"> follow </button>
-            </td>
-            <td>
-              <button class="button button3" onclick="btnclick()"> delete </button>
-            </td>
-          <td>
-          </tr>
-          </table>
+            <select class="select select2" name="selectTrackers" id="selectTrackers"></select>
 
+          </div>
+   
          <br>
 
           <table class="custom">
@@ -207,9 +191,25 @@
             </tr>
           </table>
 
+         <br>
+        <table class="custom">
+          <tr>
+            <td>
+              <button class="button button3" onclick="btnFindClick()"> find </button>
+            </td>
+            <td> 
+              <button id="followBtn" class="button button3"  onclick="btnFollowClick()"> follow </button>
+            </td>
+            <td>
+              <button class="button button3" onclick="btnDeleteClick()"> delete </button>
+            </td>
+          <td>
+          </tr>
+          </table>
+
         </div>
       </div>
-      <div class="item-content" id="email">
+      <div class="item-content" id="calendar">
         <h2>Calendar</h2>
         <div class="content">
           <div id="myCalendar" class="vanilla-calendar" style="margin-bottom: 20px"></div>
@@ -330,6 +330,7 @@
 
   <div id="map"></div>
   <script src="script.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </body>
 
 </html>

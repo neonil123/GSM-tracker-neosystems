@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface TrackerDataRepository extends JpaRepository<TrackerData, Integer> {
-    List<TrackerData> findAllByDate(LocalDateTime publicationDate);
+    List<TrackerData> findAllByTrackerId(int trackerId);
+    void deleteAllByTrackerId(int trackerId);
 }

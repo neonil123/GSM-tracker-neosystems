@@ -21,6 +21,6 @@ public class TrackerData {
     private double longitude;
     private double speed;
     private double heading;
-    private int trackerId;
+    private Integer trackerId;
     private LocalDateTime date;
 }

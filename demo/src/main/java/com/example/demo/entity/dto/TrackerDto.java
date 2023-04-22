@@ -9,7 +9,6 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class TrackerDto {
     private int id;
-    private int hardwareId;
     private String name;
     private int userId;
 }

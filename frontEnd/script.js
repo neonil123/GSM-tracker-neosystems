@@ -210,16 +210,26 @@ let trackersLastData   = [];
 let date;
 let lat = 0;
 let lng = 0;
+let followTracker = false;
 
 
 
-//const url='http://test.neosystems.cc:8081/last';
-//const url1='http://test.neosystems.cc:8081/date/';
+const url='http://test.neosystems.cc:8081/tracker/lasts/';
+const url1='http://test.neosystems.cc:8081/date/';
+const url2  ='http://test.neosystems.cc:8081/user/login';
+const url3       ='http://test.neosystems.cc:8081/tracker';
+const deleteUrl  ='http://test.neosystems.cc:8081/tracker/delete/';
+const registerUrl  ='http://test.neosystems.cc:8081/user';
+
+
+/*
 const url   ='http://localhost:8082/tracker/lasts/';
 const url1  ='http://localhost:8082/date/';
 const url2  ='http://localhost:8082/user/login';
-const   url3  ='http://localhost:8082/tracker';
-
+const url3       ='http://localhost:8082/tracker';
+const deleteUrl  ='http://localhost:8082/tracker/delete/';
+const registerUrl  ='http://localhost:8082/user';
+*/
 
 
 
@@ -319,31 +329,74 @@ setInterval(function(){
       console.log(trackersLastData[i][0])
       document.getElementById("text_speed").innerHTML          = trackersLastData[i][3];
       document.getElementById("text_head").innerHTML           = trackersLastData[i][4];
-      document.getElementById("text_fuel").innerHTML           = trackersLastData[i][4];//just some data
-      document.getElementById("text_engTemp").innerHTML        = trackersLastData[i][4];
-      document.getElementById("text_faults").innerHTML         = trackersLastData[i][4];
-      document.getElementById("text_speedGps").innerHTML       = trackersLastData[i][4];
-      document.getElementById("text_carBattery").innerHTML     = trackersLastData[i][4];
-      document.getElementById("text_trackerBattery").innerHTML = trackersLastData[i][4];
+      document.getElementById("text_fuel").innerHTML           = 80;//just some data
+      document.getElementById("text_engTemp").innerHTML        = 90;
+      document.getElementById("text_faults").innerHTML         = 0;
+      document.getElementById("text_speedGps").innerHTML       = trackersLastData[i][3];
+      document.getElementById("text_carBattery").innerHTML     = 12.8;
+      document.getElementById("text_trackerBattery").innerHTML = 80;
 
     }
 
   }
 
   setMarkers();
-    
+
+  if(followTracker){
+    for (let i = 0; i< trackersLastData.length; i++) {
+      if(selectedTrackerId == trackersLastData[i][0]){
+         map.setView([trackersLastData[i][1], trackersLastData[i][2]]);
+   }
+  }
+}  
 
     
-}, 10000);
+}, 2000);
 
 
-function btnclick() {
+
+function btnFindClick() {
   for (let i = 0; i< trackersLastData.length; i++) {
     if(selectedTrackerId == trackersLastData[i][0]){
        map.setView([trackersLastData[i][1], trackersLastData[i][2]]);
  }
 }
 }
+
+
+const followBtn = document.getElementById('followBtn');
+function btnFollowClick() {
+ followTracker = !followTracker;
+ if(followTracker){
+  followBtn.textContent  = 'following';
+ }
+ else{
+  followBtn.textContent  = 'follow';
+ }
+
+}
+
+
+const deleteTracker = new XMLHttpRequest();
+deleteTracker.onreadystatechange = (e) => {
+  if (deleteTracker.readyState === 4 && deleteTracker.status === 200) {
+  console.log("done");
+  }
+
+}
+
+function btnDeleteClick() {
+
+  if (confirm("Are you sure you want to delete the tacker and its data permanently?")) {
+    deleteTracker.open("DELETE", deleteUrl + String(selectedTrackerId));
+    deleteTracker.send();
+    removeLists();
+  } 
+
+}
+
+
+
 
 // --------------------------------------------------
 // sidebar
@@ -353,20 +406,26 @@ const sidebar = document.querySelector(".sidebar");
 const buttonClose = document.querySelector(".close-button");
 
 menuItems.forEach((item) => {
+
   item.addEventListener("click", (e) => {
     const target = e.target;
-
-    if (
-      target.classList.contains("active-item") ||
-      !document.querySelector(".active-sidebar")
-    ) {
-      document.body.classList.toggle("active-sidebar");
-    }
-
-    // show content
+    
+    if( userId == null && target.dataset.item != "menu"){
+     alert("Please Log-in firstly!");
+ 
+  }
+  else if(trackers.length <1 && (target.dataset.item == "calendar" || target.dataset.item == "car" )){
+    alert("Please add a tracker in the settings menu");
+  }
+  else{
+    if ( target.classList.contains("active-item") || !document.querySelector(".active-sidebar")) {
+      document.body.classList.toggle("active-sidebar");}
+          // show content
     showContent(target.dataset.item);
     // add active class to menu item
     addRemoveActiveItem(target, "active-item");
+  }
+
   });
 });
 
@@ -511,49 +570,45 @@ else{
 
 /////////////////////add to tracker list
 
-const frontTrackersList = document.querySelector('#fronTrackers');
+var frontTrackersList = document.querySelector('#selectTrackers');
 
-function addLists() {
+function updateTrackerList() {
 
-  let tempArrayTrackers = [];
+  while (frontTrackersList.options.length > 0) { //clear the list
+    frontTrackersList.remove(0);
+}
 
-  Array.from(document.querySelector("#fronTrackers").options).forEach(function(option_element) {
-    let option_text = option_element.text;
-    let option_value = option_element.value;
-    let is_option_selected = option_element.selected;
-    tempArrayTrackers.push(option_value)
-  });
-console.log(tempArrayTrackers)
+  for (var i = 0; i < trackers.length; i++) { //populate list
+      var el = document.createElement("option");
+      el.textContent = trackers[i][2];
+      el.value       = trackers[i][0];
+      frontTrackersList.appendChild(el);
+      console.log(trackers[i][2] + "  Adding in list");
+  }  
 
-    for (var i = 0; i < trackers.length; i++) {
-      if(! tempArrayTrackers.includes(trackers[i][2])){
-        var el = document.createElement("option");
-        el.textContent = trackers[i][2];
-        el.value       = trackers[i][2];
-        frontTrackersList.appendChild(el);
-      }
-      else{
-        console.log(trackers[i][2] + "  Already in list");
-      }
-    }  
-
-    selectedTrackerId = trackers[0][0];                                    
+  selectedTrackerId = trackers[0][0];  
+  console.log(selectedTrackerId)
 }
 
 
-
-const selectElement = document.querySelector('#fronTrackers');
-
-selectElement.addEventListener('change', (event) => {
-
-  for (var i = 0; i < trackers.length; i++) {
-  if(String(trackers[i][2]) ==  String(event.target.value)){
-    selectedTrackerId = trackers[i][0];
+frontTrackersList.addEventListener('change', (event) => {
+    selectedTrackerId = event.target.value;
     console.log(selectedTrackerId)
-  }
-   } 
-
 });
+
+
+
+function removeLists() {
+//remove the selected tracker
+  for (var i = 0; i < trackers.length; i++) { 
+    if (trackers[i][0] == selectedTrackerId){
+      trackers.splice(i,1);}  
+  }
+  updateTrackerList();
+
+}
+
+
 
 
 
@@ -570,7 +625,7 @@ Http2.onreadystatechange = function () {
       }
       
       console.log(trackers);
-      addLists();
+      updateTrackerList();
     
     }
  
@@ -605,8 +660,52 @@ xhr.onreadystatechange = function () {
         Http2.open("GET", url3 + "/" + String(userId));
         Http2.send();
 
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("LogOut").style.visibility    = "visible";
+
         alert("Logged In Succesfully as "+ userName + " " + userId);
 
+    }
+    
+};
+var data = JSON.stringify({"password": Password.value, "username": UserName.value});
+xhr.send(data);
+
+
+
+}
+
+
+////////////////////////////////Log Out
+
+function btnLogOutClick(){
+  
+  location.reload()
+
+
+}
+
+///////////////////////////////////////register user
+function btnRegisterclick() {
+
+var xhr = new XMLHttpRequest();
+xhr.open("POST", registerUrl, true);
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        alert(UserName.value + " Registered nsuccesfuly");
+
+        var json = JSON.parse(xhr.responseText);
+        console.log(json.id + ", " + json.username+ ", " +json.password);
+        userId   = json.id;
+        userName = json.username;
+
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("LogOut").style.visibility    = "visible";
+
+        alert("Logged In Succesfully as "+ userName + " " + userId);
+
+       
     }
     
 };
@@ -637,7 +736,7 @@ function btnAddTrackerclick() {
     if (xhr.readyState === 4 && xhr.status === 200) {
         var json = JSON.parse(xhr.responseText);
         console.log(json.id + ", " + json.hardwareId+ ", " +json.name);
-        alert(json.name + "Added succesfully ");
+        alert(json.name + " added succesfully ");
 
         Http2.open("GET", url3 + "/" + String(userId));
         Http2.send();
@@ -645,11 +744,9 @@ function btnAddTrackerclick() {
     }
    
 };
-var data = JSON.stringify({"name": hardwareName.value, "hardwareId": hardwareId.value, "userId": userId});
+var data = JSON.stringify({"id": hardwareId.value, "userId": userId ,"name": hardwareName.value});
 xhr.send(data);
 }
-
-
 
 
 

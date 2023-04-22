@@ -12,14 +12,12 @@ import java.util.List;
 @Entity
 public class Tracker {
     @Id
-    @GeneratedValue
-    @Column(name = "carid")
     private int id;
     private int userId;
-    private int hardwareId;
     private String name;
 
-    @OneToMany
+    @OneToMany()
+    ///@OneToMany(mappedBy = "trackerId", cascade = CascadeType.REMOVE)
     @JoinColumn(name="trackerId")
     private List<TrackerData> trackerData;
 }

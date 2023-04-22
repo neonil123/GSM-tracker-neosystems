@@ -38,4 +38,10 @@ public class TrackerController {
     public Tracker addCar(@RequestBody TrackerDto trackerDto) {
         return trackerService.addCar(trackerDto);
     }
+
+    @DeleteMapping(path = "/delete/{trackerId}")
+    public void deleteCar(@PathVariable("trackerId") int trackerId){
+        trackerService.deleteTracker(trackerId);
+
+    }
 }

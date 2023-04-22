@@ -6,17 +6,23 @@ import com.example.demo.entity.dto.TrackerDataDtoGetDates;
 import com.example.demo.entity.dto.TrackerDto;
 import com.example.demo.entity.dto.TrackerDtoGetLastTrackerData;
 import com.example.demo.mapper.Mappers;
+import com.example.demo.repository.TrackerDataRepository;
 import com.example.demo.repository.TrackerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class TrackerService {
+
     @Autowired
     private TrackerRepository trackerRepository;
+    @Autowired
+    private TrackerDataRepository trackerDataRepository;
 
     public List<Tracker> getAllTrackers() {
         return trackerRepository.findAll();
@@ -50,5 +56,10 @@ public class TrackerService {
             }
         }
       return tempTrackerData;
+    }
+
+    public void deleteTracker(int trackerId) {
+        trackerDataRepository.deleteAllByTrackerId(trackerId);
+        trackerRepository.deleteById(trackerId);
     }
 }
