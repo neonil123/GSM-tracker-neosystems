@@ -92,6 +92,7 @@ void loop() {
       if ((int)gps.satellites.value() > 0 && latitude != 0 && longitude != 0 && speedo > 2) {
         send_HTTP();
       }
+      send_HTTP();
     }
   }
 
